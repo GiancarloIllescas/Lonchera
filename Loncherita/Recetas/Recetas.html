@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Locheras saludables - grupo 1</title>
+
+  <!-- Font Awesome Icons -->
+  <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+  <!-- Plugin CSS -->
+  <link href="../../vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+  <!-- Theme CSS - Includes Bootstrap -->
+  <link href="../../css/creative.css" rel="stylesheet">
+
+
+  <link href="../../js/sweetalert2/dist/sweetalert2.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+    <header class="masthead" style="padding-top: 80px !important;">
+        <div class="container ">
+            <div class="row ">
+                <div id="miContenedor" class="col-lg-8 ">
+
+                    <!-- <div style="width: 200px; height: 220px; margin: 10px; float: left;  ">
+                        <div style="width: 100%; height: 80%;  background-image: url('../../img/Recetas/panConPalta.jpg') ; background-size: cover;">
+                            <i  style="font-size: 40px; color:orange; cursor: pointer;" class="fa fa-plus-square" aria-hidden="true"></i>
+                        </div>
+                        <div style="width: 100%; height: 20%; color: white; text-align: center; background-color: #7A6A4F; border-radius: 20px; box-shadow: 0px 0px 3px black ; padding-top: 5px;">PAN CON PALTA </div>                    
+                    </div> -->
+                    
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <footer class="bg-light py-5">
+        <div class="container">
+            <div class="small text-center text-muted">Copyright &copy; 2022 - Grupo 1</div>
+        </div>
+    </footer>
+
+    <script type="text/javascript">
+        const miDiaSemana = window.location.search.substring(1,window.location.search.length);
+        const miUsuario = sessionStorage.getItem('Usuario');
+
+        var db = openDatabase("bdPrueba","2.0","Mybase",4048);
+    
+        db.transaction(function(crear){
+    
+          crear.executeSql("select codigo, nombre, imagen from Recetas",[],function(tx, rs){
+            
+            var miStringRecetas = "";
+            for (let index = 0; index < rs.rows.length; index++) {
+              var element = rs.rows[index];   
+              miStringRecetas = miStringRecetas + '<div style="width: 200px; height: 220px; margin: 10px; float: left;  "><div style="width: 100%; height: 80%;  background-image: url('+"'"+'../../img/Recetas/'+ element.imagen +"'"+') ; background-size: cover;"><i  onclick="Seleccionar('+"'"+ element.codigo +"','"+element.nombre+"'"+')" style="font-size: 40px; color:orange; cursor: pointer;" class="fa fa-plus-square" aria-hidden="true"></i></div><div style="width: 100%; height: 20%; color: white; text-align: center; background-color: #7A6A4F; border-radius: 20px; box-shadow: 0px 0px 3px black ; padding-top: 5px;">'+ element.nombre +'</div></div>';
+            
+            }
+
+            const miDiv = document.getElementById("miContenedor");
+            miDiv.innerHTML =  miStringRecetas;
+        
+          });
+        });
+
+
+        function Seleccionar(codigo,nombre){
+
+
+          var db = openDatabase("bdPrueba","2.0","Mybase",4048);
+
+          db.transaction(function(crear){
+              crear.executeSql("select usuario from PerfilRecetas where usuario = ? and diaSemana = ?",[miUsuario,miDiaSemana],function(tx, rs){
+                
+                  if(rs.rows.length > 0)
+                  {
+                    var db2 = openDatabase("bdPrueba","2.0","Mybase",4048);
+                    db2.transaction(function(aa){
+                      aa.executeSql("delete from PerfilRecetas where usuario = ? and diaSemana = ?",[miUsuario,miDiaSemana],function(tx, rs){
+
+                          var db4 = openDatabase("bdPrueba","2.0","Mybase",4048);
+                          db4.transaction(function(cc){
+                            cc.executeSql(" INSERT INTO PerfilRecetas(usuario, diaSemana, codigoReceta, nombreReceta) VALUES (?,?,?,?)", [miUsuario,miDiaSemana,codigo,nombre],function(tx, rs){
+
+                                Swal.fire('Receta asignada para el día '+ miDiaSemana).then((result) => {
+                                    window.location.assign("../Planificacion/Planificacion.html");
+                                })
+
+                            });
+                          });
+                      });
+                    });
+                  }
+                  else
+                  {
+                      
+                      var db3 = openDatabase("bdPrueba","2.0","Mybase",4048);
+                      db3.transaction(function(bb){
+                          bb.executeSql(" INSERT INTO PerfilRecetas(usuario, diaSemana, codigoReceta, nombreReceta) VALUES (?,?,?,?)", [miUsuario,miDiaSemana,codigo,nombre],function(tx, rs){
+
+                              Swal.fire('Receta asignada para el día '+ miDiaSemana).then((result) => {
+                                  window.location.assign("../Planificacion/Planificacion.html");
+                              })
+
+                          });
+                      });
+                  }
+              });
+          });
+        };
+    
+          
+    </script>
+
+
+
+    <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Loncheras saludables</a>
+    </div>
+  </nav>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Plugin JavaScript -->
+    <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../../vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+    
+    <!-- Custom scripts for this template -->
+    <script src="../../js/creative.min.js"></script>
+
+    <script src="../../js/sweetalert2/dist/sweetalert2.js"></script>
+</body>
+    
+</html>

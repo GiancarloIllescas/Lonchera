@@ -39,37 +39,109 @@
 
   <header class="masthead">
     <div class="container h-100">
+
       <div class="row h-100 align-items-center justify-content-center text-center">
         <div class="col-lg-8 align-self-baseline">
+          <i style="font-size: 55px; float:left; color: orange; margin-right:20px;;" class="fa fa-user-circle" aria-hidden="true"></i>
+          <div style="float: left; " class="text-uppercase text-white font-weight-bold">HOLA&nbsp;&nbsp; </div>
+          <div style="float: left; color: orange;" class="text-uppercase font-weight-bold " id="dcPerfilNombre">Perfil 1</div>
+        </div>
+        <div class="col-lg-8 align-self-baseline">
             <form>
-                <div class="form-group">
-                    <label for="txtLunes" style="color: white !important;">Lunes</label>
-                    <input type="text" class="form-control" id="txtLunes"   aria-describedby="emailHelp" placeholder="Agregar receta">
+                <div  class="form-group">                    
+                    <label for="txtLunes" style="color: white !important; "><div id="dvImagenLunes" style="float: left; width: 40px; height: 40px; border: 1px gray dotted; margin: 0px 4px; margin-top: -4px;"></div>Lunes</label>
+                    <div style="clear: both;"></div>
+                    <input type="text" style="width: 90% !important; float:right; " class="form-control" id="txtLunes" readonly   aria-describedby="lunesHelp" placeholder="Agregar receta">
+                    <a style="float: left; cursor: pointer;" class="btn btn-light btn-xs " href="../Recetas/Recetas.html?Lunes" onclick=""><i style="color: orange;" class="fa fa-plus" aria-hidden="true"></i></a>
+                    
                 </div>
                 <div class="form-group">
-                    <label for="txtMartes" style="color: white !important;">Martes</label>
-                    <input type="text" class="form-control" id="txtMartes" aria-describedby="emailHelp" placeholder="Agregar receta">
+                    <label for="txtMartes" style="color: white !important;"><div id="dvImagenMartes" style="float: left; width: 40px; height: 40px; border: 1px gray dotted; margin: 0px 4px; margin-top: -4px;"></div>Martes</label>
+                    <div style="clear: both;"></div>
+                    <input type="text" style="width: 90% !important; float:right;" class="form-control" id="txtMartes" readonly aria-describedby="martesHelp" placeholder="Agregar receta">
+                    <a style="float: left; cursor: pointer;" class="btn btn-light btn-xs " href="../Recetas/Recetas.html?Martes" onclick=""><i style="color: orange;" class="fa fa-plus" aria-hidden="true"></i></a>
                 </div>
                 <div class="form-group">
-                    <label for="txtMiercoles" style="color: white !important;">Miercoles</label>
-                    <input type="text" class="form-control" id="txtMiercoles" aria-describedby="emailHelp" placeholder="Agregar receta">
+                    <label for="txtMiercoles" style="color: white !important;"><div id="dvImagenMiercoles" style="float: left; width: 40px; height: 40px; border: 1px gray dotted; margin: 0px 4px; margin-top: -4px;"></div>Miercoles</label>
+                    <div style="clear: both;"></div>
+                    <input type="text" style="width: 90% !important; float:right;"  class="form-control" id="txtMiercoles" readonly aria-describedby="miercolesHelp" placeholder="Agregar receta">
+                    <a style="float: left; cursor: pointer;" class="btn btn-light btn-xs " href="../Recetas/Recetas.html?Miercoles" onclick=""><i style="color: orange;" class="fa fa-plus" aria-hidden="true"></i></a>
                 </div>
                 <div class="form-group">
-                    <label for="txtJueves" style="color: white !important;">Jueves</label>
-                    <input type="text" class="form-control" id="txtJueves" aria-describedby="emailHelp" placeholder="Agregar receta">
+                    <label for="txtJueves" style="color: white !important;"><div id="dvImagenJueves" style="float: left; width: 40px; height: 40px; border: 1px gray dotted; margin: 0px 4px; margin-top: -4px;"></div>Jueves</label>
+                    <div style="clear: both;"></div>
+                    <input type="text" style="width: 90% !important; float:right;" class="form-control" id="txtJueves" readonly aria-describedby="juevesHelp" placeholder="Agregar receta">
+                    <a style="float: left; cursor: pointer;" class="btn btn-light btn-xs " href="../Recetas/Recetas.html?Jueves" onclick=""><i style="color: orange;" class="fa fa-plus" aria-hidden="true"></i></a>
                 </div>
                 <div class="form-group">
-                    <label for="txtViernes" style="color: white !important;">Viernes</label>
-                    <input type="text" class="form-control" id="txtViernes" aria-describedby="emailHelp" placeholder="Agregar receta">
-                </div>
-                
+                    <label for="txtViernes" style="color: white !important;"><div id="dvImagenViernes" style="float: left; width: 40px; height: 40px; border: 1px gray dotted; margin: 0px 4px; margin-top: -4px;"></div>Viernes</label>
+                    <div style="clear: both;"></div>
+                    <input type="text" style="width: 90% !important; float:right;" class="form-control" id="txtViernes" readonly aria-describedby="viernesHelp" placeholder="Agregar receta">
+                    <a style="float: left; cursor: pointer;" class="btn btn-light btn-xs " href="../Recetas/Recetas.html?Viernes" onclick=""><i style="color: orange;" class="fa fa-plus" aria-hidden="true"></i></a>
 
-                <a class="btn btn-light btn-xl js-scroll-trigger" onclick="Guardar()">Ver lista de ingredientes</a>
+                </div>
+
+                <div style="clear: both; margin-bottom: 20px;"></div>
+
+                <a style="cursor: pointer;" class="btn btn-light btn-xl js-scroll-trigger" onclick="Guardar()"><i style="color: orange; " class="fa fa-list" aria-hidden="true"></i> Ver lista de ingredientes</a>
             </form>
         </div>
       </div>
     </div>
   </header>
+
+    <footer class="bg-light py-5">
+      <div class="container">
+          <div class="small text-center text-muted">Copyright &copy; 2022 - Grupo 1</div>
+      </div>
+    </footer>
+
+    <script type="text/javascript">
+      const miUsuario = sessionStorage.getItem('Usuario');
+
+      var db = openDatabase("bdPrueba","2.0","Mybase",4048);
+      db.transaction(function(crear){
+        
+        crear.executeSql("select p.usuario, p.diaSemana, p.codigoReceta, p.nombreReceta, r.imagen from PerfilRecetas p inner join Recetas r on r.codigo = p.codigoReceta where p.usuario = ?",[miUsuario],function(tx, rs){
+
+          for (let index = 0; index <  rs.rows.length; index++) {
+            const element = rs.rows[index];
+            
+            switch (element.diaSemana) {
+              case "Lunes":
+              document.getElementById("txtLunes").value = element.nombreReceta;
+              document.getElementById("dvImagenLunes").setAttribute("style","float: left; width: 40px; height: 40px; border: 0px gray dotted; margin: 2px 4px;  background-image: url('../../img/Recetas/" + element.imagen + "'); background-size: cover;");
+              break;
+              case "Martes":
+              document.getElementById("txtMartes").value = element.nombreReceta;
+              document.getElementById("dvImagenMartes").setAttribute("style","float: left; width: 40px; height: 40px; border: 0px gray dotted; margin: 2px 4px;  background-image: url('../../img/Recetas/" + element.imagen + "'); background-size: cover;");
+              break;
+              case "Miercoles":
+              document.getElementById("txtMiercoles").value = element.nombreReceta;
+              document.getElementById("dvImagenMiercoles").setAttribute("style","float: left; width: 40px; height: 40px; border: 0px gray dotted; margin: 2px 4px;  background-image: url('../../img/Recetas/" + element.imagen + "'); background-size: cover;");
+              break;
+              case "Jueves":
+              document.getElementById("txtJueves").value = element.nombreReceta;
+              document.getElementById("dvImagenJueves").setAttribute("style","float: left; width: 40px; height: 40px; border: 0px gray dotted; margin: 2px 4px;  background-image: url('../../img/Recetas/" + element.imagen + "'); background-size: cover;");
+              break;
+              case "Viernes":
+              document.getElementById("txtViernes").value = element.nombreReceta;
+              document.getElementById("dvImagenViernes").setAttribute("style","float: left; width: 40px; height: 40px; border: 0px gray dotted; margin: 2px 4px;  background-image: url('../../img/Recetas/" + element.imagen + "'); background-size: cover;");
+              break;
+              default:
+                break;
+            }
+          }
+        });
+      });
+
+
+
+
+
+    </script>
+
+
 
     <!-- Bootstrap core JavaScript -->
     <script src="../../vendor/jquery/jquery.min.js"></script>

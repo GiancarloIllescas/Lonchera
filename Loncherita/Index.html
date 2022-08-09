@@ -65,11 +65,11 @@
     </header> -->
 
 
-    <!-- <footer class="bg-light py-5">
-    <div class="container">
-        <div class="small text-center text-muted">Copyright &copy; 2022 - Grupo 1</div>
-    </div>
-    </footer> -->
+    <footer class="bg-light py-5">
+      <div class="container">
+          <div class="small text-center text-muted">Copyright &copy; 2022 - Grupo 1</div>
+      </div>
+    </footer>
 
     <script type="text/javascript">
 
@@ -84,11 +84,38 @@
       });
 
       db.transaction(function(crear){
+        crear.executeSql("DROP TABLE Recetas");
+      });
+
+      db.transaction(function(crear){
+        crear.executeSql("DROP TABLE PerfilRecetas");
+      });
+
+      db.transaction(function(crear){
+        crear.executeSql("CREATE TABLE IF NOT EXISTS PerfilRecetas(usuario text, diaSemana text, codigoReceta text, nombreReceta text) ");
+      });
+
+      db.transaction(function(crear){
         crear.executeSql("CREATE TABLE IF NOT EXISTS Users(nombre text, password text) ");
       });
 
       db.transaction(function(crear){
         crear.executeSql("CREATE TABLE IF NOT EXISTS PerfilHijo(nombre text, NombreHijo text, Edad integer, Peso integer, Talla integer) ");
+      });
+
+      db.transaction(function(crear){
+        crear.executeSql("CREATE TABLE IF NOT EXISTS Recetas(codigo text, nombre text, calorias integer, precio integer, imagen text) ");
+
+        crear.executeSql(" INSERT INTO Recetas(codigo, nombre, calorias, precio ,imagen) VALUES (?,?,?,?,?)", ["COD1"  ,"Pan con palta",250,8,"panConPalta.jpg" ]);
+        crear.executeSql(" INSERT INTO Recetas(codigo, nombre, calorias, precio ,imagen) VALUES (?,?,?,?,?)", ["COD2"  ,"Pan integral con atún",150,15,"panIntegralAtun.jpg" ]);
+        crear.executeSql(" INSERT INTO Recetas(codigo, nombre, calorias, precio ,imagen) VALUES (?,?,?,?,?)", ["COD3"  ,"Ensalda de frutas",200,12,"ensaladaFrutas.jpg" ]);
+        crear.executeSql(" INSERT INTO Recetas(codigo, nombre, calorias, precio ,imagen) VALUES (?,?,?,?,?)", ["COD4"  ,"Fresas con leche",250,8,"fresasLeche.jpg" ]);
+        crear.executeSql(" INSERT INTO Recetas(codigo, nombre, calorias, precio ,imagen) VALUES (?,?,?,?,?)", ["COD5"  ,"Ensalada de choclo",280,6 ,"ensaladaChoclo.jpg"]);
+        crear.executeSql(" INSERT INTO Recetas(codigo, nombre, calorias, precio ,imagen) VALUES (?,?,?,?,?)", ["COD6"  ,"Miel con furtos secos",450,8,"mielFrutosSecos.jpg" ]);
+        crear.executeSql(" INSERT INTO Recetas(codigo, nombre, calorias, precio ,imagen) VALUES (?,?,?,?,?)", ["COD7"  ,"Obento japones",360,18,"obentoJapones.jpg" ]);
+        crear.executeSql(" INSERT INTO Recetas(codigo, nombre, calorias, precio ,imagen) VALUES (?,?,?,?,?)", ["COD8"  ,"Panqueques de avena",130,6,"panquequesAvena.jpg" ]);
+        crear.executeSql(" INSERT INTO Recetas(codigo, nombre, calorias, precio ,imagen) VALUES (?,?,?,?,?)", ["COD9"  ,"Avena con frutos rojos",80,5,"avenaFrutosRojos.jpg" ]);
+        crear.executeSql(" INSERT INTO Recetas(codigo, nombre, calorias, precio ,imagen) VALUES (?,?,?,?,?)", ["COD10"  ,"Hamburguesa de lentejas",410,9,"hamburguesaLentejas.jpg" ]);
       });
 
     </script>
