@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Locheras saludables - grupo 1</title>
+
+        <!-- Font Awesome Icons -->
+        <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+        <!-- Plugin CSS -->
+        <link href="../../vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+        <!-- Theme CSS - Includes Bootstrap -->
+        <link href="../../css/creative.css" rel="stylesheet">
+
+
+        <link href="../../js/sweetalert2/dist/sweetalert2.css" rel="stylesheet">
+
+    </head>
+
+    <body id="page-top">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+            <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">Loncheras saludables</a>
+            </div>
+        </nav>
+
+        <header class="masthead">
+            <div class="container h-100">        
+              <div class="row h-100 align-items-center justify-content-center text-center">
+                    <div class="col-lg-8 align-self-baseline">
+
+                        <div class="container">
+                            <div class="row" id="rowDetalle">
+                                <!-- <div  class="col-2 imagen" style="height: 50px; background-image: url('../../img/Recetas/avenaFrutosRojos.jpg'); background-size: cover; border-bottom: 1px solid orange; padding-bottom: 5px; margin-bottom: 20px;">
+                                </div>
+                                <div  class="col-8 producto" style="color: white; border-bottom: 1px solid orange; margin-bottom: 20px;">
+                                    hola hola hola hola
+                                </div>
+                                <div  class="col-2 precio" style="color: white; border-bottom: 1px solid orange; margin-bottom: 20px;">
+                                    S/. 15
+                                </div> -->
+
+                            </div>
+                            <div class="row justify-content-end">
+                                <div style="color: white; font-weight: bolder;" class="col-4" id="dvTotal">
+                                    One of two columns
+                                </div>
+                            </div>
+                            <div style="margin-top: 50px;" class="row justify-content-center">
+                                <div style="color: white; font-weight: bolder;" class="col-4" id="dvTotal">
+                                    <a style="cursor: pointer; color: black;" class="btn btn-light btn-xl js-scroll-trigger" onclick="Guardar()"><i style="color: orange; " class="fa fa-shopping-basket" aria-hidden="true"></i> Comprar</a>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+          </div>
+        </header>
+
+        <footer class="bg-light py-5">
+            <div class="container">
+                <div class="small text-center text-muted">Copyright &copy; 2022 - Grupo 1</div>
+            </div>
+        </footer>
+
+        <script type="text/javascript">
+
+            const miUsuario = sessionStorage.getItem('Usuario');
+
+            var db = openDatabase("bdPrueba","2.0","Mybase",4048);
+            db.transaction(function(crear){
+            
+                crear.executeSql("select p.usuario, p.diaSemana, p.codigoReceta, p.nombreReceta, r.imagen, r.precio from PerfilRecetas p inner join Recetas r on r.codigo = p.codigoReceta where p.usuario = ?",[miUsuario],function(tx, rs){
+
+                    var miStringDetalle = "";
+                    var miTotal = 0;
+                    for (let index = 0; index <  rs.rows.length; index++) {
+
+                        const element = rs.rows[index];
+                        miTotal = miTotal + element.precio ;
+
+                        miStringDetalle = miStringDetalle + '<div  class="col-2 imagen" style="height: 50px; background-image: url('+"'"+'../../img/Recetas/'+ element.imagen +"'"+') ; background-size: cover; border-bottom: 1px solid orange; padding-bottom: 5px; margin-bottom: 20px;"></div><div  class="col-8 producto" style="color: white; border-bottom: 1px solid orange; margin-bottom: 20px;"> '+ element.nombreReceta +'</div><div  class="col-2 precio" style="color: white; border-bottom: 1px solid orange; margin-bottom: 20px;">S/. '+ element.precio +'</div>';
+
+                    }
+
+                    const miDiv = document.getElementById("rowDetalle");
+                    miDiv.innerHTML =  miStringDetalle;
+                    document.getElementById("dvTotal").innerHTML = "TOTAL S/. " + miTotal.toString(); 
+                });
+            });
+
+            function Guardar(){
+                Swal.fire('Su pedido a sido registrado').then((result) => {
+                    window.location.assign("../Planificacion/Planificacion.html");
+                })
+            }
+
+        </script>
+
+        <!-- Bootstrap core JavaScript -->
+        <script src="../../vendor/jquery/jquery.min.js"></script>
+        <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        
+        <!-- Plugin JavaScript -->
+        <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
+        <script src="../../vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+        
+        <!-- Custom scripts for this template -->
+        <script src="../../js/creative.min.js"></script>
+    
+        <script src="../../js/sweetalert2/dist/sweetalert2.js"></script>
+    </body>
+      
+</html>
